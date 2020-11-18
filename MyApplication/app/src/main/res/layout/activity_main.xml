@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="@color/color_black_30"
+        android:layout_height="@dimen/height_50"
+        android:layout_alignParentBottom="true">
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:button="null"
+                android:gravity="center"
+                android:text="上海"
+                android:textColor="@color/colorWhit"
+                android:textSize="@dimen/size_18"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:button="null"
+                android:text="杭州"
+                android:textSize="@dimen/size_18"
+                android:textColor="@color/colorWhit"
+                android:gravity="center"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+    </FrameLayout>
+
+</RelativeLayout>
