@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MyApplication</string>
     <string name="skip">跳过</string>
+    <string name="shanghai">上海</string>
+    <string name="hangzhou">杭州</string>
+    <string name="beijing">北京</string>
+    <string name="shenzhen">深圳</string>
 </resources>

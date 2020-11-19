@@ -4,6 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.VideoView;
 
+/**
+ * 自定义全屏的视频播发view
+ */
 public class FullScreenVideoView extends VideoView {
 
     //主要用于直接new出来的对象
