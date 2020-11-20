@@ -7,8 +7,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * 静态代理类
+ * 负责转发activity生命周期
+ * 调用presenter的生命周期函数
+ */
 public class MvpController implements ILifeCircle{
 
+    // 存放presenter集合，一个activity可以有多个presenter
     private Set<ILifeCircle> lifeCircles = new HashSet<>();
 
     @Override
@@ -143,6 +149,10 @@ public class MvpController implements ILifeCircle{
         }
     }
 
+    /**
+     * 存放presenter实例
+     * @param lifeCircle presenter实例
+     */
     public void savePresenter(ILifeCircle lifeCircle) {
         this.lifeCircles.add(lifeCircle);
     }

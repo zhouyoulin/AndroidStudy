@@ -6,6 +6,11 @@ import android.os.Bundle;
 import com.example.myapplication.mvp.IMvpView;
 import com.example.myapplication.mvp.presenter.LifeCircleMvpPresenter;
 
+/**
+ * presenter中间转换层
+ * 目的：不必要让子类实现所有的抽象方法
+ * @param <T> IMvpView
+ */
 public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvpPresenter<T> {
 
     public BaseMvpPresenter(T view){

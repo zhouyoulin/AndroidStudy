@@ -8,8 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.myapplication.mvp.IMvpView;
 import com.example.myapplication.mvp.MvpController;
 
+/**
+ * MVP activity基类
+ * 负责绑定静态代理类MvpController
+ * 转发生命周期
+ */
 public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView {
 
+    // 静态代理对象实例
     private MvpController mvpController;
 
     @Override

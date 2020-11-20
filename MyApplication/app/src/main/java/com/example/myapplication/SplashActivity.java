@@ -67,12 +67,6 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
         setTvClickable(false);
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        timerPresenter.cancel();
-//    }
-
     @Override
     public void setTvTimer(String s) {
         tvSplashTime.setText(s);
