@@ -45,8 +45,7 @@ public class MainActivity extends BaseActivity {
     private boolean isChangeTopBottom;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void afterBindView() {
         changeAnimation(groupBeijing, groupShanghai);
         rdShanghai.setChecked(true);
     }

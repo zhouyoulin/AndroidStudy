@@ -1,25 +1,31 @@
 package com.example.myapplication;
 
-public class SplashTimerPresenter {
+import android.util.Log;
 
-    private SplashActivity mActivity;
+import com.example.myapplication.mvp.IMvpView;
+import com.example.myapplication.mvp.ISplashActivityContract;
+import com.example.myapplication.mvp.base.BaseMvpPresenter;
+
+public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContract.IView> implements ISplashActivityContract.IPresenter {
+
     private CustomCountDownTimer timer;
 
-    public SplashTimerPresenter(SplashActivity splashActivity) {
-        this.mActivity = splashActivity;
+    public SplashTimerPresenter(ISplashActivityContract.IView view) {
+        super(view);
     }
+
 
     public void initTimer() {
         timer = new CustomCountDownTimer(5, new CustomCountDownTimer.CountDownTimerListener() {
             @Override
             public void onTicker(int time) {
-                mActivity.setTvTimer(time + "");
+                getView().setTvTimer(time + "秒");
             }
 
             @Override
             public void onFinish() {
-                mActivity.setTvTimer(mActivity.getString(R.string.skip));
-                mActivity.setTvClickable(true);
+                getView().setTvTimer("跳过");
+                getView().setTvClickable(true);
             }
         });
         timer.start();
@@ -28,4 +34,19 @@ public class SplashTimerPresenter {
     public void cancel() {
         timer.cancel();
     }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cancel();
+        Log.e("SplashTimerPresenter", "onDestroy: ");
+    }
+
+    @Override
+    protected ISplashActivityContract.IView getEmptyView() {
+        return ISplashActivityContract.emptyView;
+    }
+
+
 }

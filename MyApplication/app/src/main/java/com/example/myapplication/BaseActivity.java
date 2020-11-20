@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.myapplication.mvp.view.LifeCircleMvpActivity;
+
 import butterknife.ButterKnife;
 
 /**
  * activity基类
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends LifeCircleMvpActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,9 +23,10 @@ public class BaseActivity extends AppCompatActivity {
             int mainLayoutId = viewInject.mainLayoutId();
             if (mainLayoutId > 0){
                 setContentView(mainLayoutId);
-
+                
                 // 初始化ButterKnife 需要在setContentView之后
                 ButterKnife.bind(this);
+                afterBindView();
             }else {
                 throw new RuntimeException("mainLayoutId < 0");
             }
@@ -31,4 +34,6 @@ public class BaseActivity extends AppCompatActivity {
             throw new RuntimeException("mainLayoutId is null");
         }
     }
+
+    protected abstract void afterBindView();
 }
