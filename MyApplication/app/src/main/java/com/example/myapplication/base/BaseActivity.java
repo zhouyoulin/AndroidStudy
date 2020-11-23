@@ -1,8 +1,7 @@
-package com.example.myapplication;
+package com.example.myapplication.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.example.myapplication.mvp.view.LifeCircleMvpActivity;
 
