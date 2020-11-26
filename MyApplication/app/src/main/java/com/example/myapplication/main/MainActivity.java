@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import com.example.myapplication.R;
 import com.example.myapplication.base.BaseActivity;
 import com.example.myapplication.base.ViewInject;
+import com.example.myapplication.main.tools.MainConstantTools;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,22 +66,24 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
 
     // 点击悬浮按钮切换到上海杭州界面
     private void handleBottomPosition() {
-        if (mPresenter.getTopPosition() == 0){
+        if (mPresenter.getTopPosition() == MainConstantTools.SHANGHAI){
             rdShanghai.setChecked(true);
+            mPresenter.replaceFragment(MainConstantTools.SHANGHAI);
         }else{
             rdHangzhou.setChecked(true);
+            mPresenter.replaceFragment(MainConstantTools.HANGZHOU);
         }
-        mPresenter.replaceFragment(mPresenter.getTopPosition());
+
     }
 
     // 点击悬浮按钮切换到北京，深圳界面
     private void handleTopPosition() {
-        if (mPresenter.getBottomPosition() == 3){
+        if (mPresenter.getBottomPosition() == MainConstantTools.SHENZHEN){
             rdShenzhen.setChecked(true);
-            mPresenter.replaceFragment(3);
+            mPresenter.replaceFragment(MainConstantTools.SHENZHEN);
         }else{
             rdBeijing.setChecked(true);
-            mPresenter.replaceFragment(2);
+            mPresenter.replaceFragment(MainConstantTools.BEIJING);
         }
 
     }
@@ -142,16 +145,16 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
                 }
                 break;
             case R.id.rd_shanghai:
-                mPresenter.replaceFragment(0);
+                mPresenter.replaceFragment(MainConstantTools.SHANGHAI);
                 break;
             case R.id.rd_hangzhou:
-                mPresenter.replaceFragment(1);
+                mPresenter.replaceFragment(MainConstantTools.HANGZHOU);
                 break;
             case R.id.rd_beijing:
-                mPresenter.replaceFragment(2);
+                mPresenter.replaceFragment(MainConstantTools.BEIJING);
                 break;
             case R.id.rd_shenzhen:
-                mPresenter.replaceFragment(3);
+                mPresenter.replaceFragment(MainConstantTools.SHENZHEN);
                 break;
         }
     }
