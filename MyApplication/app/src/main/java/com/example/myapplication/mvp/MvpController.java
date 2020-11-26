@@ -149,6 +149,14 @@ public class MvpController implements ILifeCircle{
         }
     }
 
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        Iterator<ILifeCircle> iterator = this.lifeCircles.iterator();
+        while (iterator.hasNext()){
+            ILifeCircle lifeCircle = iterator.next();
+            lifeCircle.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
     /**
      * 存放presenter实例
      * @param lifeCircle presenter实例
@@ -156,4 +164,6 @@ public class MvpController implements ILifeCircle{
     public void savePresenter(ILifeCircle lifeCircle) {
         this.lifeCircles.add(lifeCircle);
     }
+
+
 }

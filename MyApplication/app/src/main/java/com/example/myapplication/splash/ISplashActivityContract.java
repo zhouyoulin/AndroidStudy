@@ -11,10 +11,20 @@ public interface ISplashActivityContract {
         void setTvTimer(String timer);
 
         void setTvClickable(boolean b);
+
+        void requestPermissions(String[] permissions, int myPermissionsRequest);
+
+        int checkSelfPermission(String permission);
+
+        void afterPermission();
     }
 
     interface IPresenter extends ILifeCircle {
         void initTimer();
+    }
+
+    interface PermissionPresenter extends ILifeCircle{
+        void checkPermission();
     }
 
     IView emptyView = new IView() {
@@ -31,6 +41,20 @@ public interface ISplashActivityContract {
         @Override
         public MvpController getMvpController() {
             return null;
+        }
+
+        @Override
+        public void requestPermissions(String[] permissions, int myPermissionsRequest) {
+        }
+
+        @Override
+        public int checkSelfPermission(String permission){
+            return 0;
+        }
+
+        @Override
+        public void afterPermission() {
+
         }
     };
 }

@@ -1,11 +1,17 @@
 package com.example.myapplication.splash;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.base.BaseActivity;
 import com.example.myapplication.main.MainActivity;
@@ -19,7 +25,6 @@ import butterknife.BindView;
 @ViewInject(mainLayoutId = R.layout.activity_splash)
 public class SplashActivity extends BaseActivity implements ISplashActivityContract.IView {
 
-
     @BindView(R.id.m_videoView)
     FullScreenVideoView mVideoView;
 
@@ -28,11 +33,17 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
 
     private ISplashActivityContract.IPresenter timerPresenter;
 
+    private ISplashActivityContract.PermissionPresenter permissionPresenter;
+
     @Override
     protected void afterBindView() {
-        initTimerPresenter();
-        initVideo();
-        initListener();
+        initPermissionPresenter();
+
+    }
+
+    private void initPermissionPresenter() {
+        permissionPresenter = new SplashPermissionPresenter(this);
+        permissionPresenter.checkPermission();
     }
 
     private void initTimerPresenter() {
@@ -79,6 +90,13 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
     }
 
     @Override
+    public void afterPermission() {
+        initTimerPresenter();
+        initVideo();
+        initListener();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -87,4 +105,28 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == SplashConstant.MY_PERMISSIONS_REQUEST) {
+            for (int i = 0; i < grantResults.length; i++) {
+                if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                    // 判断是否勾选禁止后不再询问
+                    boolean showRequestPermission = this.shouldShowRequestPermissionRationale(permissions[i]);
+                    if (showRequestPermission) {
+                        Toast.makeText(SplashActivity.this,"有权限未授权，可能影响游戏体验。建议在权限中打开游戏所使用的权限。",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+            if (this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(SplashActivity.this,"请打开游戏存储权限以保存文件",Toast.LENGTH_SHORT).show();
+                permissionPresenter.checkPermission();
+            }else {
+                afterPermission();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 }

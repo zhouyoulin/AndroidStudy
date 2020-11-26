@@ -30,4 +30,6 @@ public interface ILifeCircle {
     void onSaveInstanceState(Bundle outState);
 
     void attachView(IMvpView view);
+
+    void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults);
 }

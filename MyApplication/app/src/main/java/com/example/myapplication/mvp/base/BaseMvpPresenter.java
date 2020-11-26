@@ -71,4 +71,9 @@ public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvp
     public void onSaveInstanceState(Bundle outState) {
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+    }
 }
