@@ -25,7 +25,7 @@
     <FrameLayout
         android:id="@+id/fl_main_bottom"
         android:layout_width="match_parent"
-        android:background="@color/color_black_30"
+        android:background="@color/colorWhit"
         android:layout_height="@dimen/height_50"
         android:layout_alignParentBottom="true">
         <RadioGroup

@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseFragment extends LifeCircleMvpFragment {
 
-    private Context context;
+    public Context context;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
                 mView = initFragmentView(inflater, mainLayoutId);
 
                 // 初始化ButterKnife 需要在setContentView之后
-                ButterKnife.bind(mView);
+                ButterKnife.bind(this, mView);
                 afterBindView();
             }else {
                 throw new RuntimeException("mainLayoutId < 0");

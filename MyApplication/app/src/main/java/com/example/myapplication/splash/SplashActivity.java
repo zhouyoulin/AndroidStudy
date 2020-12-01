@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -129,4 +130,10 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("SplashActivity", "onPause: ");
+    }
 }
