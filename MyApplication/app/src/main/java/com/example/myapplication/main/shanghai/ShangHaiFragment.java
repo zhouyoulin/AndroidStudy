@@ -52,7 +52,7 @@ public class ShangHaiFragment extends BaseFragment {
         //设置RecyclerView的layoutmanager
         shanghaiRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         //设置RecyclerView的adapter
-        shanghaiRecyclerView.setAdapter(new ShanghaiAdapter(context, ShanghaiDataManager.getData()));
+        shanghaiRecyclerView.setAdapter(new ShanghaiAdapter(getActivity(), ShanghaiDataManager.getData(), false));
     }
 
     private void initListener() {

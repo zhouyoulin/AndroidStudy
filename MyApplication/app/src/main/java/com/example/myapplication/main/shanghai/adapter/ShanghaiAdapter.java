@@ -1,5 +1,6 @@
 package com.example.myapplication.main.shanghai.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.main.shanghai.bean.ShanghaiBean;
+import com.example.myapplication.main.shanghai.view.ShanghaiDetailActivity;
 
 import java.util.ArrayList;
 
@@ -20,16 +23,21 @@ import java.util.ArrayList;
  */
 public class ShanghaiAdapter extends RecyclerView.Adapter {
 
-    private final ArrayList<ShanghaiBean> mData;
-    private final Context mContext;
+    private final boolean mIsHor;
+    private ArrayList<ShanghaiBean> mData;
+    private Activity mContext;
+    // RecyclerView四级缓存
+    private RecyclerView.RecycledViewPool mRecycledViewPool;
 
     /**
      * @param context 上下文
      * @param data 数据
      */
-    public ShanghaiAdapter(Context context, ArrayList<ShanghaiBean> data) {
+    public ShanghaiAdapter(Activity context, ArrayList<ShanghaiBean> data, boolean isHor) {
         mContext = context;
         mData = data;
+        mRecycledViewPool = new RecyclerView.RecycledViewPool();
+        mIsHor = isHor;
     }
 
     @NonNull
@@ -55,9 +63,9 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
         if (getItemViewType(i) == ShanghaiBean.IShanghaiItemType.VERTICAL){
             ((ShanghaiViewHolder)viewHolder).mTv.setText(shanghaiBean.getmDesc());
             ((ShanghaiViewHolder)viewHolder).mIv.setVisibility(shanghaiBean.isShowImg()?View.VISIBLE:View.GONE);
+            ((ShanghaiViewHolder)viewHolder).itemView.setTag(i);
         }else if (getItemViewType(i) == ShanghaiBean.IShanghaiItemType.HORIZONTAL){
-            ((ShanghaiViewHzHolder)viewHolder).mRv.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-            ((ShanghaiViewHzHolder)viewHolder).mRv.setAdapter(new ShanghaiAdapter(mContext, shanghaiBean.getmData()));
+            ((ShanghaiViewHzHolder)viewHolder).mRv.setAdapter(new ShanghaiAdapter(mContext, shanghaiBean.getmData(), true));
         }
     }
 
@@ -81,6 +89,13 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
             super(itemView);
             mTv = itemView.findViewById(R.id.item_shanghai_tv);
             mIv = itemView.findViewById(R.id.item_shanghai_iv);
+            // 设置回调尽量在创建viewholder的时候设置，因为adapter绑定hlder的时候会多次
+            this.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShanghaiDetailActivity.start_5_0(mContext,mIv);
+                }
+            });
         }
     }
 
@@ -91,6 +106,11 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
         public ShanghaiViewHzHolder(@NonNull View itemView) {
             super(itemView);
             mRv = itemView.findViewById(R.id.item_shanghai_hz);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+            mRv.setLayoutManager(linearLayoutManager);
+            //优化RecyclerView缓存
+            linearLayoutManager.setRecycleChildrenOnDetach(true);
+            mRv.setRecycledViewPool(mRecycledViewPool);
         }
     }
 }
