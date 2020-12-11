@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.mvp.view.LifeCircleMvpActivity;
-import com.example.myapplication.mvp.view.LifeCircleMvpFragment;
+import com.shengqu.dl.mvp.mvp.view.LifeCircleMvpActivity;
+import com.shengqu.dl.mvp.mvp.view.LifeCircleMvpFragment;
 
 import butterknife.ButterKnife;
 

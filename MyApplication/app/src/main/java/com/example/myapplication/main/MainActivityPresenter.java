@@ -8,7 +8,7 @@ import com.example.myapplication.main.beijing.BeiJingFragment;
 import com.example.myapplication.main.hangzhou.HangZhouFragment;
 import com.example.myapplication.main.shanghai.ShangHaiFragment;
 import com.example.myapplication.main.shenzhen.ShenZhenFragment;
-import com.example.myapplication.mvp.base.BaseMvpPresenter;
+import com.shengqu.dl.mvp.mvp.base.BaseMvpPresenter;
 
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.IView> implements IMainActivityContract.IPresenter{
 

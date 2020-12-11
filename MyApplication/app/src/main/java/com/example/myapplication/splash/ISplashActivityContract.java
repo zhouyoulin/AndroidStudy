@@ -1,8 +1,8 @@
 package com.example.myapplication.splash;
 
-import com.example.myapplication.mvp.ILifeCircle;
-import com.example.myapplication.mvp.IMvpView;
-import com.example.myapplication.mvp.MvpController;
+import com.shengqu.dl.mvp.mvp.ILifeCircle;
+import com.shengqu.dl.mvp.mvp.IMvpView;
+import com.shengqu.dl.mvp.mvp.MvpController;
 
 public interface ISplashActivityContract {
 

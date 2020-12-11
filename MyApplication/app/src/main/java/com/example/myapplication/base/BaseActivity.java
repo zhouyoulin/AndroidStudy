@@ -3,7 +3,7 @@ package com.example.myapplication.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.example.myapplication.mvp.view.LifeCircleMvpActivity;
+import com.shengqu.dl.mvp.mvp.view.LifeCircleMvpActivity;
 
 import butterknife.ButterKnife;
 

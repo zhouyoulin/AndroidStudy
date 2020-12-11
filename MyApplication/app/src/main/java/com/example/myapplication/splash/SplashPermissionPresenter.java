@@ -5,7 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
 
-import com.example.myapplication.mvp.base.BaseMvpPresenter;
+import com.shengqu.dl.mvp.mvp.base.BaseMvpPresenter;
 
 import java.util.ArrayList;
 import java.util.List;

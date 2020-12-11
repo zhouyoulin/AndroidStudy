@@ -2,9 +2,9 @@ package com.example.myapplication.main;
 
 import android.support.v4.app.Fragment;
 
-import com.example.myapplication.mvp.ILifeCircle;
-import com.example.myapplication.mvp.IMvpView;
-import com.example.myapplication.mvp.MvpController;
+import com.shengqu.dl.mvp.mvp.ILifeCircle;
+import com.shengqu.dl.mvp.mvp.IMvpView;
+import com.shengqu.dl.mvp.mvp.MvpController;
 
 public interface IMainActivityContract {
     interface IView extends IMvpView {

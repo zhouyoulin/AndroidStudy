@@ -1,2 +1,4 @@
+include ':http'
+include ':mvp'
 rootProject.name='MyApplication'
 include ':app'
